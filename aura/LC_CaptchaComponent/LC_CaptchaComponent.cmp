@@ -1,0 +1,23 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    
+    <div class="demo-only" style="height: 640px;">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Security Check</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p> <iframe src="https://java-force-3598-dev-ed--c.cs58.visual.force.com/apex/CaptchaPage" height="104px" width="1000px" style="border:0px"/></p>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button class="slds-button slds-button_brand" onclick="{!c.submit}">Submit</lightning:button>
+                    <lightning:button class="slds-button slds-button_neutral" onclick="{!c.cancel}">Cancel</lightning:button>
+                    
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+   
+    <br/>    
+</aura:component>

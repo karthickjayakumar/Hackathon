@@ -1,0 +1,24 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes" access="global" controller="LCC_CreateConnectedApp">    
+    <lightning:tabset selectedTabId="two">
+        <lightning:tab label="Data Protection Officer Contact Information" id="one">
+            Data Protection Officer Contact Information
+        </lightning:tab>
+    </lightning:tabset>
+    <p><b>The General Data Protection Regulation (GDPR), which goes into effect on 25 May 2018, creates consistent data protection rules across Europe. It applies to all companies that process personal data about individuals in the EU, regardless of where the company is based. Processing is defined broadly and refers to anything related to personal data, including how a company handles and manages data, such as collecting, storing, using and destroying data.<a href ='https://www.facebook.com/business/gdpr'>More</a></b></p>
+    <lightning:input name="input4"   label="Name" />
+    <lightning:input name="input5"  label="Contact Email" />
+    
+    <div style="max-width: 400px;">
+        <lightning:inputAddress
+            addressLabel="Address"
+            streetLabel="Street"
+            cityLabel="City"
+            countryLabel="Country"
+            provinceLabel="Province"
+            postalCodeLabel="PostalCode"
+            fieldLevelHelp="Help Text for inputAddress field"
+        />
+    </div>
+
+	
+</aura:component>

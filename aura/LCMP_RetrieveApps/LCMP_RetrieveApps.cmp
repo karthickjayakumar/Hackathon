@@ -1,0 +1,39 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" controller="LCC_CreateConnectedApp">
+    
+    
+    <!-- The list of accounts to display -->
+    <aura:attribute name="capps" type="object"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="appId" type="string"/>
+    <aura:attribute name="appSecret" type="string"/>
+    <aura:attribute name="privURL" type="string"/>
+    <aura:attribute name="termURL" type="string"/>
+    <aura:attribute name="conEmail" type="string"/>
+    <aura:attribute name="displayName" type="string"/>
+    <aura:attribute name="callbackURL" type="string"/>
+    <aura:attribute name="listOptions" type="List" default="[]"/>
+    
+    
+    
+    <div class="slds-grid slds-wrap slds-text-align_center custom-container">
+        <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.appId}" type="text" name="appId" label="App Id" />
+        <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.appSecret}" type="text" name="appSecret" label="App Secret" />
+        <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.displayName}" type="text" name="displayName" label="Display Name" />
+        <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.privURL}" type="text" name="privacyurl" label="Privacy Policy URL" />
+        <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.callbackURL}" type="text" label="CallBack URL" name="privacyurl1" />
+        <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.termURL}" type="text" name="termsURL" label="Terms of Service URL" />
+        <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.conEmail}" type="email"  label="Contact Email" />
+        
+        <lightning:dualListbox aura:id="selectOptions" name="Select Options" label= "Select
+                                                                                     Options"
+                               sourceLabel="Available Options"
+                               selectedLabel="Selected Options"
+                               options="{! v.listOptions }" onchange="{! c.handleChange }"
+                               />
+        
+    </div>
+    <lightning:button label="Update Details" class="slds-float_right" onclick="{!c.submitDetails}"/>
+    
+</aura:component>

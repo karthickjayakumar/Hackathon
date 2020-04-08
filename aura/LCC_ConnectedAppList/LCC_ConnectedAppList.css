@@ -1,0 +1,7 @@
+.THIS .backgroundClass{
+    background :gray;
+}
+.THIS .slds-button_icon-container{
+    width: 3rem;
+    height: 3rem;
+}

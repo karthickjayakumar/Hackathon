@@ -1,0 +1,64 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes" access="global" controller="LCC_CreateConnectedApp">
+    <aura:attribute name="contactEmail" type="string"/>
+    <aura:attribute name="conDisplayName" type="string"/>
+    <aura:attribute name="conEmail" type="string"/>
+    <aura:attribute name="displayName" type="string"/>
+    <aura:attribute name="showCaptcha" type="boolean"/>
+    <aura:attribute name="showStepOne" type="boolean" default="false"/>
+    <aura:attribute name="showStepTwo" type="boolean" default="false"/>
+    <aura:attribute name="appId" type="string"/>
+    <aura:attribute name="appSecret" type="string"/>
+    <aura:attribute name="privURL" type="string"/>
+    <aura:attribute name="termURL" type="string"/>
+    <aura:attribute name="callbackURL" type="string"/>
+    <aura:attribute name="listOptions" type="List" default="[]"/>
+    <aura:attribute name="selectedCapp" type="string"/>
+    <aura:attribute name="lstCapps" type="object[]" default=""/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:registerEvent name="closeForm" type="c:LEVT_ConnectedApp" />
+    
+    <aura:if isTrue="{!v.showStepOne}">
+        <h2>Create New App </h2>
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="12" largeDeviceSize="6" padding="around-small">
+                
+                <lightning:input aura:id="displayName" value="{!v.displayName}" type="text" name="displayName" label="Display Name" />
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12" largeDeviceSize="6" padding="around-small">
+                <ui:inputEmail aura:id="conEmail" value="{!v.conEmail}" label="Contact Email" placeholder="abc@email.com"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12" largeDeviceSize="12" padding="around-large">
+                <lightning:button label="Cancel"  onclick="{!c.cancel}"/>
+                <lightning:button label="Create App"  onclick="{!c.submitForm}"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </aura:if>
+        <br></br>
+        <aura:if isTrue="{!v.showCaptcha}">
+            <div class="demo-only" style="height: 640px;">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Security Check</h2>
+                            <h4  id="modal-heading-01" >please complete security check</h4>
+                        </header>
+                        
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <p> <iframe src="https://java-force-3598-dev-ed--c.cs58.visual.force.com/apex/CaptchaPage" height="104px" width="1000px" style="border:0px"/></p>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning:button class="slds-button slds-button_brand" onclick="{!c.submit}">Submit</lightning:button>
+                            <lightning:button class="slds-button slds-button_neutral" onclick="{!c.cancel}">Cancel</lightning:button>
+                            
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+            
+            <br/>    
+        </aura:if>
+    
+</aura:component>

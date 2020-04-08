@@ -1,0 +1,83 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global"  controller="LCC_CreateConnectedApp">
+    <aura:attribute name="AppObj" type="object"/>
+    <aura:attribute name="selected" type="Boolean" default="false"/>
+    <aura:attribute name="selectedCapp" type="string"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="lstCapps" type="object[]" default=""/>
+    <aura:attribute name="contactEmail" type="string"/>
+    <aura:attribute name="conDisplayName" type="string"/>
+    <aura:attribute name="conEmail" type="string"/>
+    <aura:attribute name="displayName" type="string"/>
+    <aura:attribute name="showCaptcha" type="boolean"/>
+    <aura:attribute name="showStepOne" type="boolean" default="false"/>
+    <aura:attribute name="showStepTwo" type="boolean" default="false"/>
+    <aura:attribute name="appId" type="string"/>
+    <aura:attribute name="appSecret" type="string"/>
+    <aura:attribute name="selectedappid" type="string"/>
+    <aura:attribute name="callbackURL" type="string"/>
+    <lightning:button onclick="{!c.onAppClick}" value="{!v.AppObj.Name}" aura:id="{!v.AppObj.Name}">
+        <div class="slds-page-header">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <lightning:icon iconName="utility:apps" size="large"/>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets">{!v.AppObj.app.Display_Name__c}</span>
+                                    </h1>
+                                </div>
+                            </div>
+                            <p class="slds-page-header__name-meta">App ID: {!v.AppObj.AppID__c}</p>
+                            <p class="slds-page-header__name-meta">Name: {!v.AppObj.Name}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning:button>
+    
+    
+    <aura:if isTrue="{!v.selected}">
+        <div class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Update Connected App</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="12" largeDeviceSize="4">
+                <lightning:select name="selectItem" label="Select an item" value = "{!v.selectedCapp}" onchange="{!c.onChangecApp}">
+                    <aura:iteration items="{!v.lstCapps}" var="app">
+                        <option value="{!app.Name}">{!app.Name}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <div class="slds-grid slds-wrap slds-text-align_center custom-container">
+            <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.appId}" type="text" name="appId" label="App Id" disabled="true"/>
+            <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.appSecret}" type="text" name="appSecret" label="App Secret" disabled="true"/>
+            <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.conDisplayName}" type="text" name="displayName" label="Display Name" />
+            <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.privURL}" type="text" name="privacyurl" label="Privacy Policy URL" />
+            <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.callbackURL}" type="text" label="CallBack URL" name="privacyurl1" />
+            <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.termURL}" type="text" name="termsURL" label="Terms of Service URL" />
+            <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="{!v.contactEmail}" type="email"  label="Contact Email" />
+            <lightning:input class="slds-size_1-of-2 slds-max-small-size_1-of-1" value="full" type="email"  label="Scope" />
+                      
+        </div>
+        <lightning:button label="Update Details" class="slds-float_right" onclick="{!c.submitDetails}"/>
+        
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning:button class="slds-button slds-button_neutral" onclick="{!c.closepopup}">Cancel</lightning:button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+</aura:component>
